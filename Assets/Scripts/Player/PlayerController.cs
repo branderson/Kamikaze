@@ -1,7 +1,6 @@
 using System;
 using Assets.Utility;
 using Assets.Utility.Static;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Player
