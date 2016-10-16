@@ -16,7 +16,7 @@ namespace Assets.Room
             PlayerController player = other.GetComponent<PlayerController>();
             if (player == null) return;
 
-            Debug.Log(player.SqrVelocity + " " + _exitVelocity * _exitVelocity);
+//            Debug.Log(player.SqrVelocity + " " + _exitVelocity * _exitVelocity);
             if (player.SqrVelocity < _exitVelocity*_exitVelocity) return;
 
             // Player can exit this level

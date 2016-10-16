@@ -26,6 +26,8 @@ namespace Assets.Player
         {
             if (col.gameObject.tag != "Enemy") return;
 
+            if (_sword.SpinSpeed < 100) return;
+
             EnemyController enemy = col.gameObject.GetComponent<EnemyController>();
             _sword.EnemyKilled(enemy.Score);
             GameObject enemyDeath = enemy.Destroy();

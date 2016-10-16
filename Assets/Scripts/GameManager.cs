@@ -9,7 +9,7 @@ namespace Assets
         protected GameManager() { }
 
         private List<GameObject> _enemies = new List<GameObject>();
-        private float _levelBounds = 32;
+        private float _levelBounds = 0;
         private float _innerBounds = 0;
 
         public void Start()

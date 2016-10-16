@@ -44,6 +44,7 @@ namespace Assets.Player
         private void Start()
         {
 //            _initialPosition = _rigidbody.position - Player.transform.position;
+            _spinSpeed = 1f;
         }
 
         private void LateUpdate()
@@ -67,7 +68,7 @@ namespace Assets.Player
 //            _rigidbody.MoveRotation(_rigidbody.rotation * dr);
 
             _spinSpeed -= _spinDecay*Time.deltaTime;
-            if (_spinSpeed < 0) _spinSpeed = 0;
+            if (_spinSpeed < 1) _spinSpeed = 1;
         }
 
         public float Spin()
