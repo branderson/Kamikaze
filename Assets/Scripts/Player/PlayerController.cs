@@ -14,11 +14,13 @@ namespace Assets.Player
             Flying,
         }
 
-        private const float FlightSpinSpeed = 1000;
+        private const float FlightSpinSpeed = 2000;
 
+        [SerializeField] private CameraController _camera;
         [SerializeField] private SwordController _sword;
         [SerializeField] private float _baseMoveSpeed = 5f;
         [SerializeField] private float _baseThrust = .0001f;
+        [SerializeField] private float _cameraBackoffDamping = 250f;
         private float _maxVelocity = 10f;
 
         private MoveState _moveState = MoveState.Walking;
@@ -59,6 +61,7 @@ namespace Assets.Player
                 _sword.Spin();
             }
             _spinSpeed = _sword.SpinSpeed;
+            _camera.FollowDistance = 5 + _spinSpeed/_cameraBackoffDamping;
         }
 
         private void MoveWalking(Vector2 input)
@@ -116,7 +119,7 @@ namespace Assets.Player
                     transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                     break;
                 case MoveState.Flying:
-                    transform.rotation = Quaternion.Euler(rotation.eulerAngles.x + 90, rotation.eulerAngles.y, 0);
+                    transform.rotation = Quaternion.Euler(rotation.eulerAngles.x + 45, rotation.eulerAngles.y, 0);
                     break;
             }
         }

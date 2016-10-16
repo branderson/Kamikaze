@@ -34,8 +34,8 @@ namespace Assets.Player
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            _rigidbody.centerOfMass = new Vector3(-2, 0, 0);
+//            _rigidbody = GetComponent<Rigidbody>();
+//            _rigidbody.centerOfMass = new Vector3(-2, 0, 0);
             _playerCollider = Player.GetComponent<Collider>();
             _highVelocityCollider = _highVelocityCollisions.GetComponent<Collider>();
             _lowVelocityCollider = _lowVelocityCollisions.GetComponent<Collider>();
@@ -43,7 +43,7 @@ namespace Assets.Player
 
         private void Start()
         {
-            _initialPosition = _rigidbody.position - Player.transform.position;
+//            _initialPosition = _rigidbody.position - Player.transform.position;
         }
 
         private void LateUpdate()

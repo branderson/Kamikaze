@@ -8,15 +8,13 @@ namespace Assets
     {
         protected GameManager() { }
 
-        private const float EdgeOffset = 10f;
-
         private List<GameObject> _enemies = new List<GameObject>();
-        private float _levelBounds = 0;
+        private float _levelBounds = 32;
         private float _innerBounds = 0;
 
         public void Start()
         {
-            SetLevelBounds(160);
+            SetLevelBounds(32);
         }
 
         public void SetLevelBounds(float radius)
@@ -27,11 +25,13 @@ namespace Assets
 
         public GameObject InstantiateEnemy(GameObject enemy)
         {
+            float edgeOffset = _levelBounds/8;
+
             // Select a random position in quadrant 1
             Vector3 quadrantPosition = new Vector3(
-                Random.Range(EdgeOffset, _levelBounds - _innerBounds - EdgeOffset), 
-                Random.Range(EdgeOffset, _levelBounds - _innerBounds - EdgeOffset),
-                Random.Range(EdgeOffset, _levelBounds - _innerBounds - EdgeOffset));
+                Random.Range(edgeOffset, _levelBounds - _innerBounds - edgeOffset), 
+                Random.Range(edgeOffset, _levelBounds - _innerBounds - edgeOffset),
+                Random.Range(edgeOffset, _levelBounds - _innerBounds - edgeOffset));
             float invertX = Random.value > .5f ? 1 : -1;
             float invertY = Random.value > .5f ? 1 : -1;
             float invertZ = Random.value > .5f ? 1 : -1;

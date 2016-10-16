@@ -6,10 +6,17 @@ namespace Assets.Enemy
 {
     public class EnemyController : CustomMonoBehaviour
     {
+        [SerializeField] private GameObject _deathPrefab;
         [SerializeField] private float _score = 100;
+        [SerializeField] private float _speed = 5f;
 
         private Transform _player;
         private Rigidbody _rigidbody;
+
+        public float Score
+        {
+            get { return _score; }
+        }
 
         private void Awake()
         {
@@ -19,7 +26,7 @@ namespace Assets.Enemy
 
         private void Update()
         {
-            Vector3 dirToPlayer = Direction(_player.position)*Time.deltaTime;
+            Vector3 dirToPlayer = Direction(_player.position)*_speed*Time.deltaTime;
             
             _rigidbody.MovePosition(new Vector3(
                 _rigidbody.position.x + dirToPlayer.x,
@@ -27,13 +34,12 @@ namespace Assets.Enemy
                 _rigidbody.position.z + dirToPlayer.z));
         }
 
-        private void OnCollisionEnter(Collision other)
+        public GameObject Destroy()
         {
-            if (other.gameObject.tag == "Sword")
-            {
-                SwordController sword = other.gameObject.GetComponent<SwordController>();
-                sword.EnemyKilled(_score);
-            }
+            GameObject go = Instantiate(_deathPrefab, transform.position, Quaternion.identity) as GameObject;
+            
+            Destroy(gameObject);
+            return go;
         }
     }
 }

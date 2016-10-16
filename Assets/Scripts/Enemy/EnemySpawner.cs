@@ -8,15 +8,15 @@ namespace Assets.Enemy
         [SerializeField] private GameObject _enemyPrefab;
         [SerializeField] private float _spawnRate = .5f;
 
-        private int _spawnFrames = 0;
+        private float _spawnFrames = 0;
 
         private void Update()
         {
             _spawnFrames++;
 
-            if (_spawnFrames > 60f/_spawnRate)
+            while (_spawnFrames > 60f/_spawnRate)
             {
-                _spawnFrames = 0;
+                _spawnFrames -= 60f/_spawnRate;
                 GameObject spawned = GameManager.Instance.InstantiateEnemy(_enemyPrefab);
             }
         }
